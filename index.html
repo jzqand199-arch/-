@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>中医植物大战僵尸（MVP）</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>中医植物大战僵尸（MVP）</h1>
+    <div class="hud">
+      <div id="qi">气: 50</div>
+      <div id="score">分数: 0</div>
+      <button id="startBtn">开始</button>
+      <button id="restartBtn">重新开始</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="left">
+      <div class="shop">
+        <div class="seed" data-type="shooter">人参（射手） - 50</div>
+        <div class="seed" data-type="blocker">艾草（阻挡） - 25</div>
+        <div class="seed" data-type="producer">枸杞（产气） - 75</div>
+      </div>
+      <canvas id="gameCanvas" width="900" height="500"></canvas>
+    </div>
+    <aside class="right">
+      <h2>说明</h2>
+      <ul>
+        <li>点击上方种子选择植物，再点击画布放置（移动端触控支持）</li>
+        <li>每种植物有不同花费与能力，击败敌人可获得气。</li>
+        <li>目标：防止僵尸穿过左侧。</li>
+      </ul>
+    </aside>
+  </main>
+
+  <script src="js/entities.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
