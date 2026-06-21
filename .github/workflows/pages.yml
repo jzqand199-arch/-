@@ -5,22 +5,30 @@ on:
     branches:
       - main
 
+# 把权限放在顶层，确保 Pages/部署 action 有写权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v1
+      # 如果你有构建步骤（如 npm run build），可以在这里加入。若无（本仓库是静态文件），直接上传根目录即可。
+      # - name: Build
+      #   run: |
+      #     npm ci
+      #     npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '.'  # 要部署的目录（项目根）。如有 build 输出目录请改为 'build' 或相对路径。
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        id: deploy
+        uses: actions/deploy-pages@v4
